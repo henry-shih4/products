@@ -17,7 +17,9 @@ export default function Cart(props) {
         style={{ backgroundColor: "white" }}
         className="hidden w-[240px] h-[100%] absolute top-[64px] right-0 shadow-lg"
       >
-        <div className="text-lg font-medium text-gray-900">Shopping cart</div>
+        <div className="text-lg font-medium text-gray-900">
+          {props.cart.id ? props.cart[0].id : "cart"}
+        </div>
 
         <div className="mt-8">
           <div className="flow-root">

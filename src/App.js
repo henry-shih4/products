@@ -2,7 +2,7 @@ import Card from "./components/Card.js";
 import "./App.css";
 import Header from "./components/Header.js";
 import Cart from "./components/Cart.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const productList = [
   {
@@ -32,6 +32,15 @@ const productList = [
 ];
 
 function App() {
+  const [cart, setCart] = useState([]);
+
+  // useEffect(() => {
+  //   console.log(cart);
+  // }, [cart]);
+
+  function handleCartClick(item) {
+    setCart([...cart, item]);
+  }
 
   return (
     <div className="App ">
@@ -40,20 +49,20 @@ function App() {
         {productList.map((product) => {
           return (
             <Card
-            productList={productList}
+              productList={productList}
               key={product.id}
               id={product.id}
               name={product.name}
               price={product.price}
               description={product.description}
               img={product.img}
-    
+              onCartClick={handleCartClick}
             />
           );
         })}
       </div>
 
-      <Cart className="hidden" />
+      <Cart className="hidden" cart={cart} />
 
       <button className="absolute top-[64px] right-0" onClick={showCart}>
         <svg

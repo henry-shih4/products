@@ -1,14 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Card(props) {
-  const [cart, setCart] = useState([]);
-
-  function handleCartClick() {
-    let addProduct = props.productList.filter(
-      (product, index) => props.id === index + 1
-    );
-    setCart((cart) => [...cart, addProduct[0]]);
-  }
+  // function handleCartClick() {
+  //   let addProduct = props.productList.filter(
+  //     (product, index) => props.id === index + 1
+  //   );
+  //   this.setCart([...props.cart, addProduct[0]]);
+  // }
 
   return (
     <>
@@ -20,7 +18,12 @@ function Card(props) {
           <div className="flex justify-between items-center">
             <p>Price: {props.price}</p>
             <button
-              onClick={handleCartClick}
+              onClick={props.onCartClick(
+                props.productList.filter(
+                  ((product, index) => props.id === index + 1)
+                )
+              )}
+              
               className="h-[40px] w-[100px] text-xs bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
             >
               Add to Cart
