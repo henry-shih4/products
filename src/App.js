@@ -2,7 +2,7 @@ import Card from "./components/Card.js";
 import "./App.css";
 import Header from "./components/Header.js";
 import Cart from "./components/Cart.js";
-import { cartList } from "./components/Cart.js";
+import { useState } from "react";
 
 const productList = [
   {
@@ -32,6 +32,7 @@ const productList = [
 ];
 
 function App() {
+
   return (
     <div className="App ">
       <Header />
@@ -39,11 +40,14 @@ function App() {
         {productList.map((product) => {
           return (
             <Card
+            productList={productList}
+              key={product.id}
               id={product.id}
               name={product.name}
               price={product.price}
               description={product.description}
               img={product.img}
+    
             />
           );
         })}
@@ -80,7 +84,5 @@ function showCart() {
     cart.classList.add("hidden");
   }
 }
-
-function addToCart() {}
 
 export default App;
