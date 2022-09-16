@@ -35,23 +35,23 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   function onAdd(product) {
-    setCartItems([...cartItems, { ...product }]);
-    // const exist = cartItems.find((x) => x.id === product.id);
-    // if (exist) {
-    //   setCartItems(
-    //     cartItems.map((x) =>
-    //       x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
-    //     )
-    //   );
-    // } else {
-    //   setCartItems([...cartItems, { ...product, qty: 1 }]);
-    // }
+    // setCartItems([...cartItems, { ...product }]);
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
   }
 
   return (
     <div className="App ">
       <Header />
-      <StoreFront onAdd={onAdd} products={products} />
+      <StoreFront className="float-left" onAdd={onAdd} products={products} />
       <Cart onAdd={onAdd} cartItems={cartItems} />
 
       <button className="absolute top-[64px] right-0" onClick={showCart}>

@@ -5,7 +5,7 @@ export default function StoreFront(props) {
 
   return (
     <>
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-start">
         {products.map((product) => {
           return <Card key={product.id} product={product} onAdd={onAdd} />;
         })}
