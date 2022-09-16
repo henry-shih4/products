@@ -1,14 +1,3 @@
-const cartList = [
-  {
-    id: 1,
-    name: "Pokemon Card",
-    description:
-      "Choose your Pokemon card design, and we'll create a sticker for your credit card!",
-    price: "9.99",
-    img: "/images/blastoise.jpg",
-  },
-];
-
 export default function Cart(props) {
   return (
     <>
@@ -18,8 +7,15 @@ export default function Cart(props) {
         className="hidden w-[240px] h-[100%] absolute top-[64px] right-0 shadow-lg"
       >
         <div className="text-lg font-medium text-gray-900">
-          {props.cart.id ? props.cart[0].id : "cart"}
+          {JSON.stringify(props.productList[0])}
         </div>
+      </div>
+      {/* <div
+        id="cart"
+        style={{ backgroundColor: "white" }}
+        className="hidden w-[240px] h-[100%] absolute top-[64px] right-0 shadow-lg"
+      >
+        <div className="text-lg font-medium text-gray-900">Shopping Cart</div>
 
         <div className="mt-8">
           <div className="flow-root">
@@ -58,7 +54,7 @@ export default function Cart(props) {
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
