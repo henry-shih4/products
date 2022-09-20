@@ -35,7 +35,6 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   function onAdd(product) {
-    // setCartItems([...cartItems, { ...product }]);
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
       setCartItems(
@@ -48,13 +47,26 @@ function App() {
     }
   }
 
+  function onRemove(product) {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist.qty === 1) {
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
+    } else {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+        )
+      );
+    }
+  }
+
   return (
     <div className="App ">
       <Header />
       <StoreFront className="float-left" onAdd={onAdd} products={products} />
-      <Cart onAdd={onAdd} cartItems={cartItems} />
+      <Cart onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />
 
-      <button className="absolute top-[64px] right-0" onClick={showCart}>
+      <button className="absolute top-[64px] right-0" onClick={toggleCart}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -74,14 +86,9 @@ function App() {
   );
 }
 
-function showCart() {
+function toggleCart() {
   let cart = document.getElementById("cart");
-  if (cart.classList.contains("hidden")) {
-    cart.classList.remove("hidden");
-    cart.classList.add("block");
-  } else if (cart.classList.contains("block")) {
-    cart.classList.add("hidden");
-  }
+  cart.classList.toggle("hidden");
 }
 
 export default App;
