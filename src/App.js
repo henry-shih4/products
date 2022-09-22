@@ -3,6 +3,9 @@ import Header from "./components/Header.js";
 import StoreFront from "./components/StoreFront.js";
 import { useState, useEffect } from "react";
 import Cart from "./components/Cart.js";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import About from "./components/About.js";
+import Home from "./components/Home.js";
 
 const products = [
   {
@@ -62,10 +65,26 @@ function App() {
 
   return (
     <div className="App ">
-      <Header />
-      <StoreFront className="float-left" onAdd={onAdd} products={products} />
-      <Cart onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />
-
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route
+            path="/shop"
+            element={
+              <>
+                <StoreFront
+                  className="float-left"
+                  onAdd={onAdd}
+                  products={products}
+                />{" "}
+                <Cart onAdd={onAdd} onRemove={onRemove} cartItems={cartItems} />
+              </>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
       <button className="absolute top-[64px] right-0" onClick={toggleCart}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

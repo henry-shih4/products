@@ -1,13 +1,13 @@
 import Cart from "./Cart.js";
-
+import { NavLink } from "react-router-dom";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Home", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Shop", href: "#", current: false },
+  { name: "Home", href: "/home", current: true },
+  { name: "About", href: "/about", current: false },
+  { name: "Shop", href: "/shop", current: false },
   { name: "Instagram", href: "#", current: false },
 ];
 
@@ -49,19 +49,7 @@ export default function Header() {
                 <div className="hidden sm:ml-6 flex justify-center items-center sm:flex">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-black hover:bg-gray-700 hover:text-white",
-                          "px-3 py-2 rounded-md text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
+                      <NavLink to={item.href}>{item.name}</NavLink>
                     ))}
                   </div>
                 </div>
@@ -80,22 +68,22 @@ export default function Header() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3">
-              {navigation.map((item) => (
-                <Disclosure.Button
+              {/* {navigation.map((item) => (
+                <NavLink
                   key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-gray-900 text-white"
-                      : "text-white-300 hover:bg-gray-700 hover:text-white",
-                    "block px-3 py-2 rounded-md text-base font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
+                  to={item.href}
+                  className={({ isActive }) => {
+                    return (
+                      "block px-3 py-2 rounded-md text-base font-medium no-underline " +
+                      (!isActive
+                        ? "text-gray-300 hover:bg-gray-700 hover:text-white"
+                        : "bg-gray-900 text-white ")
+                    );
+                  }}
                 >
                   {item.name}
-                </Disclosure.Button>
-              ))}
+                </NavLink>
+              ))} */}
             </div>
           </Disclosure.Panel>
         </>
