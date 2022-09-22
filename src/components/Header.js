@@ -5,10 +5,9 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Home", href: "/home", current: true },
-  { name: "About", href: "/about", current: false },
-  { name: "Shop", href: "/shop", current: false },
-  { name: "Instagram", href: "#", current: false },
+  { name: "Home", href: "/home" },
+  { name: "About", href: "/about" },
+  { name: "Shop", href: "/shop" },
 ];
 
 function classNames(...classes) {
@@ -17,7 +16,7 @@ function classNames(...classes) {
 
 export default function Header() {
   return (
-    <Disclosure as="nav" className="bg-emerald-400">
+    <Disclosure as="nav">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -49,7 +48,19 @@ export default function Header() {
                 <div className="hidden sm:ml-6 flex justify-center items-center sm:flex">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <NavLink to={item.href}>{item.name}</NavLink>
+                      <NavLink
+                        className={({ isActive }) => {
+                          return (
+                            "px-3 py-2 rounded-md text-base font-medium no-underline" +
+                            (!isActive
+                              ? "text-gray-300 hover:bg-gray-700 hover:text-white"
+                              : " bg-white text-black ")
+                          );
+                        }}
+                        to={item.href}
+                      >
+                        {item.name}
+                      </NavLink>
                     ))}
                   </div>
                 </div>

@@ -11,7 +11,7 @@ export default function Cart(props) {
       <div
         id="cart"
         style={{ backgroundColor: "white" }}
-        className="w-[240px] min-h-full max-h-max absolute top-[64px] right-0 shadow-lg"
+        className="min-w-[240px] min-h-full max-h-max shadow-lg"
       >
         <div className="text-lg font-medium text-gray-900">
           <div>
