@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./components/About.js";
 import Home from "./components/Home.js";
 
+
+
 const products = [
   {
     id: 1,
@@ -15,6 +17,7 @@ const products = [
       "Choose your Pokemon card design, and we'll create a sticker for your credit card!",
     price: "9.99",
     img: "/images/blastoise.jpg",
+    stripeID: "price_1Lk7tMFKeOoHeQ131ItcxFR4",
   },
   {
     id: 2,
@@ -23,6 +26,7 @@ const products = [
       "Choose your Yugi-oh card design, and we'll create a sticker for your credit card!",
     price: "9.99",
     img: "/images/yugioh.jpg",
+    stripeID: "price_1Ll1edFKeOoHeQ13uBzMIJ5M",
   },
   {
     id: 3,
@@ -31,6 +35,7 @@ const products = [
       "Choose your Logo card design, and we'll create a sticker for your credit card!",
     price: "10.99",
     img: "/images/cardlogo.jpg",
+    stripeID: "price_1Ll1fOFKeOoHeQ133HBD4OKB",
   },
 ];
 

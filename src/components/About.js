@@ -18,7 +18,7 @@ export default function About() {
           </div>
         </div>
         <div className="w-1/2 text-center pr-4 flex flex-col justify-center items-center">
-          <div className="text-4xl text-center mb-5">Our Ceo</div>
+          <div className="text-4xl text-center mb-5">Our CEO</div>
           <div className="flex justify-center items-center rounded-full w-[full]">
             <img
               className="max-h-[350px] rounded-full"

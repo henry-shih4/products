@@ -1,11 +1,43 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripeLoadedPromise = loadStripe(
+  "pk_test_51Lk7oOFKeOoHeQ13IzlX3FoBOY3BxOS4eY3fef0HIgi56tT46n5nGlD0soTm7kHMM4GwvC5VHvBVcXCT9CJ5S9fu00cyIGFv34"
+);
 
 export default function Cart(props) {
   const { cartItems, onAdd, onRemove } = props;
   const { totalPrice, setTotalPrice } = useState(0);
   const { disabled, setDisabled } = useState(false);
+  const [email, setEmail] = useState("");
   const totalItemPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const lineItems = cartItems.map((product) => {
+      return { price: product.stripeID, quantity: product.qty };
+    });
+    console.log(lineItems);
+    stripeLoadedPromise.then((stripe) => {
+      stripe
+        .redirectToCheckout({
+          lineItems: lineItems,
+          mode: "payment",
+          successUrl: "https://google.com",
+          cancelUrl: "https://react-tutorial.app/app.html",
+          customerEmail: email,
+        })
+        .then((response) => {
+          // this will only log if the redirect did not work
+          console.log(response.error);
+        })
+        .catch((error) => {
+          // wrong API key? you will see the error message here
+          console.log(error);
+        });
+    });
+  }
 
   return (
     <>
@@ -55,13 +87,23 @@ export default function Cart(props) {
           </div>
         ) : null}
         <div className=" mt-2 mb-2 w-[full] flex justify-center items-center">
-          <button
-            className="h-[40px] w-[100px] text-xs bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded "
-            disabled={cartItems.length === 0}
-            onClick={() => console.log("checkout click")}
-          >
-            Checkout
-          </button>
+          <form onSubmit={handleFormSubmit}>
+            <input
+              required
+              type="email"
+              placeholder="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            ></input>
+            <button
+              className="h-[40px] w-[100px] text-xs bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded "
+              disabled={cartItems.length === 0}
+            >
+              Checkout
+            </button>
+          </form>
         </div>
       </div>
     </>
