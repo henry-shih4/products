@@ -1,7 +1,6 @@
-
 import { NavLink } from "react-router-dom";
 import { Fragment } from "react";
-import { Disclosure} from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
@@ -9,7 +8,6 @@ const navigation = [
   { name: "About", href: "/about" },
   { name: "Shop", href: "/shop" },
 ];
-
 
 export default function Header() {
   return (
@@ -77,22 +75,22 @@ export default function Header() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3">
-              {/* {navigation.map((item) => (
+              {navigation.map((item) => (
                 <NavLink
-                  key={item.name}
-                  to={item.href}
+                  end
                   className={({ isActive }) => {
                     return (
-                      "block px-3 py-2 rounded-md text-base font-medium no-underline " +
+                      "px-3 py-2 rounded-md text-base font-medium no-underline" +
                       (!isActive
                         ? "text-gray-300 hover:bg-gray-700 hover:text-white"
-                        : "bg-gray-900 text-white ")
+                        : " bg-white text-black ")
                     );
                   }}
+                  to={item.href}
                 >
                   {item.name}
                 </NavLink>
-              ))} */}
+              ))}
             </div>
           </Disclosure.Panel>
         </>
