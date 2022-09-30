@@ -67,7 +67,7 @@ function App() {
   }
 
   return (
-    <div className="App  bg-gradient-to-b from-[#20c4a6] to-[rgb(184,241,184)]">
+    <div className="App  bg-gradient-to-b from-[#20c4a6] to-[rgb(184,241,184)] h-screen">
       <BrowserRouter>
         <Header />
         <Routes>
