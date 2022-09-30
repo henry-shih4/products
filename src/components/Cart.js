@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripeLoadedPromise = loadStripe(
@@ -8,10 +7,10 @@ const stripeLoadedPromise = loadStripe(
 
 export default function Cart(props) {
   const { cartItems, onAdd, onRemove } = props;
-  const { totalPrice, setTotalPrice } = useState(0);
-  const { disabled, setDisabled } = useState(false);
+
   const [email, setEmail] = useState("");
   const totalItemPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
+  const totalQuantity = cartItems.reduce((a, c) => a + c.qty, 0);
 
   function handleFormSubmit(e) {
     e.preventDefault();
@@ -25,7 +24,7 @@ export default function Cart(props) {
           lineItems: lineItems,
           mode: "payment",
           successUrl: "https://google.com",
-          cancelUrl: "https://react-tutorial.app/app.html",
+          cancelUrl: "https://google.com",
           customerEmail: email,
         })
         .then((response) => {
@@ -55,6 +54,7 @@ export default function Cart(props) {
             <div className="flex flex-row p-2" key={item.id}>
               <div className="mr-2">
                 <img
+                  alt={`${item.name}-product-info`}
                   className="object-cover w-[150px] h-[150px]"
                   src={item.img}
                 ></img>
@@ -83,7 +83,8 @@ export default function Cart(props) {
         </div>
         {cartItems.length > 0 ? (
           <div className="font-bold text-center text-lg">
-            Total: {totalItemPrice.toFixed(2)}
+            Total: {totalItemPrice.toFixed(2)} <br />
+            Total Items: {totalQuantity}
           </div>
         ) : null}
         <div className=" mt-2 mb-2 w-[full] flex justify-center items-center">

@@ -1,18 +1,15 @@
-import Cart from "./Cart.js";
+
 import { NavLink } from "react-router-dom";
 import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Disclosure} from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Home", href: "/home" },
+  { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Shop", href: "/shop" },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export default function Header() {
   return (
@@ -49,6 +46,7 @@ export default function Header() {
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <NavLink
+                        end
                         className={({ isActive }) => {
                           return (
                             "px-3 py-2 rounded-md text-base font-medium no-underline" +

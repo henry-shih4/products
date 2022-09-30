@@ -5,7 +5,11 @@ export default function About() {
         <div className="w-1/2 pl-4 flex flex-col justify-center items-center">
           <div className="text-4xl text-center mb-5">Our Mission</div>
           <div className="flex justify-center">
-            <img className="max-h-[350px]" src="/images/logo.png"></img>
+            <img
+              alt="proleon-logo"
+              className="max-h-[350px]"
+              src="/images/logo.png"
+            ></img>
           </div>
           <div className="text-center w-3/4">
             <div className="text-2xl">To provide the best</div>
@@ -21,6 +25,7 @@ export default function About() {
           <div className="text-4xl text-center mb-5">Our CEO</div>
           <div className="flex justify-center items-center rounded-full w-[full]">
             <img
+              alt="ceo"
               className="max-h-[350px] rounded-full"
               src="/images/ceo.png"
             ></img>
@@ -33,6 +38,7 @@ export default function About() {
             <a
               href="https://www.yourethecure.org/akash_stroke_story"
               target="_blank"
+              rel="noreferrer"
             >
               <button id="article-btn">Here</button>
             </a>

@@ -1,13 +1,11 @@
 import "./App.css";
 import Header from "./components/Header.js";
 import StoreFront from "./components/StoreFront.js";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Cart from "./components/Cart.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./components/About.js";
 import Home from "./components/Home.js";
-
-
 
 const products = [
   {
@@ -73,7 +71,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" exact={true} element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route
             path="/shop"
