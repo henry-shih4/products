@@ -47,7 +47,7 @@ export default function Cart(props) {
       >
         <div className="text-lg font-medium text-gray-900">
           <div>
-            <div className="underline">Shopping Cart</div>
+            <div className="flex underline">Shopping Cart</div>
             {cartItems.length === 0 && <div className="text-center">Empty</div>}
           </div>
           {cartItems.map((item) => (

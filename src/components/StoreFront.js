@@ -5,7 +5,7 @@ export default function StoreFront(props) {
 
   return (
     <>
-      <div className='display flex flex-col'>
+      <div className='display flex flex-col h-screen'>
         <div className='ml-5'>Our Products</div>
         <div className="bg-white">
           <div className="mx-3 flex flex-wrap justify-start">
