@@ -4,7 +4,6 @@ import StoreFront from "./components/StoreFront.js";
 import { useState } from "react";
 import Cart from "./components/Cart.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import About from "./components/About.js";
 import Home from "./components/Home.js";
 
 const products = [
@@ -67,17 +66,16 @@ function App() {
   }
 
   return (
-    <div className="App  bg-gradient-to-b from-[#20c4a6] to-[rgb(184,241,184)] h-screen">
+    <div className="App bg-[#20c4a6] h-screen">
       <BrowserRouter>
         <Header />
         <Routes>
           <Route path="/" exact={true} element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route
             path="/shop"
             element={
               <>
-                <div className="flex justify-between bg-white">
+                <div className="flex">
                   <StoreFront onAdd={onAdd} products={products} />
                   <Cart
                     onAdd={onAdd}

@@ -23,8 +23,8 @@ export default function Cart(props) {
         .redirectToCheckout({
           lineItems: lineItems,
           mode: "payment",
-          successUrl: "https://google.com",
-          cancelUrl: "https://google.com",
+          successUrl: "https://proleon-stickers.netlify.app/shop",
+          cancelUrl: "https://proleon-stickers.netlify.app/shop",
           customerEmail: email,
         })
         .then((response) => {
@@ -40,71 +40,78 @@ export default function Cart(props) {
 
   return (
     <>
-      <div
-        id="cart"
-        style={{ backgroundColor: "white" }}
-        className="min-w-[340px] min-h-full max-h-max shadow-lg"
-      >
-        <div className="text-lg font-medium text-gray-900">
-          <div>
-            <div className="flex underline">Shopping Cart</div>
-            {cartItems.length === 0 && <div className="text-center">Empty</div>}
-          </div>
-          {cartItems.map((item) => (
-            <div className="flex flex-row p-2" key={item.id}>
-              <div className="mr-2">
-                <img
-                  alt={`${item.name}-product-info`}
-                  className="object-cover w-[150px] h-[150px]"
-                  src={item.img}
-                ></img>
-              </div>
-              <div className="text-m">
-                <div>{item.name}</div>
-                <div>Quantity: {item.qty}</div>
-                <div>Price: {item.price * item.qty} </div>
-                <div className="flex">
-                  <button
-                    onClick={() => onAdd(item)}
-                    className="add m-1 h-[30px] w-[30px] text-xs bg-gre hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded flex justify-center"
-                  >
-                    +
-                  </button>
-                  <button
-                    onClick={() => onRemove(item)}
-                    className="remove  m-1 h-[30px] w-[30px] text-xs bg-gre hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded flex justify-center"
-                  >
-                    -
-                  </button>
+      <div>
+        <div
+          id="cart"
+          className="p-4 bg-[#F8B6B5] min-w-[340px] min-h-full max-h-max shadow-lg rounded-lg text-white"
+        >
+          <div className="text-lg font-medium">
+            <div>
+              <div className="flex underline">Shopping Cart</div>
+              {cartItems.length === 0 && (
+                <div className="text-center">Empty</div>
+              )}
+            </div>
+            {cartItems.map((item) => (
+              <div className="flex flex-row p-2 " key={item.id}>
+                <div className="mr-2">
+                  <img
+                    alt={`${item.name}-product-info`}
+                    className="object-cover max-w-[150px] min-h-[150px]"
+                    src={item.img}
+                  ></img>
+                </div>
+                <div className="text-m">
+                  <div>{item.name}</div>
+                  <div>Quantity: {item.qty}</div>
+                  <div>Price: {item.price * item.qty} </div>
+                  <div className="flex">
+                    <button
+                      onClick={() => onAdd(item)}
+                      className="add m-1 h-[30px] w-[30px] text-xs bg-gre hover:bg-[#20c4a6] text-white font-bold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded flex justify-center"
+                    >
+                      +
+                    </button>
+                    <button
+                      onClick={() => onRemove(item)}
+                      className="remove  m-1 h-[30px] w-[30px] text-xs bg-gre hover:bg-[#20c4a6] text-white font-bold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded flex justify-center"
+                    >
+                      -
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-        {cartItems.length > 0 ? (
-          <div className="font-bold text-center text-lg">
-            Total: {totalItemPrice.toFixed(2)} <br />
-            Total Items: {totalQuantity}
+            ))}
           </div>
-        ) : null}
-        <div className=" mt-2 mb-2 w-[full] flex justify-center items-center">
-          <form onSubmit={handleFormSubmit}>
-            <input
-              required
-              type="email"
-              placeholder="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            ></input>
-            <button
-              className="h-[40px] w-[100px] text-xs bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded "
-              disabled={cartItems.length === 0}
+          {cartItems.length > 0 ? (
+            <div className="font-bold text-center text-lg">
+              Total: {totalItemPrice.toFixed(2)} <br />
+              Total Items: {totalQuantity}
+            </div>
+          ) : null}
+          <div className=" mt-2 mb-2 w-[full] flex justify-center items-center">
+            <form
+              className="flex flex-col justify-center items-center"
+              onSubmit={handleFormSubmit}
             >
-              Checkout
-            </button>
-          </form>
+              <input
+                className="border-white border-2 border-solid rounded-md pl-2"
+                required
+                type="email"
+                placeholder="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              ></input>
+              <button
+                className="m-2 h-[40px] w-[100px] text-sm bg-transparent hover:bg-[#20c4a6] text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded "
+                disabled={cartItems.length === 0}
+              >
+                Checkout
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </>

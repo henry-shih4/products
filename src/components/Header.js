@@ -5,7 +5,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
   { name: "Shop", href: "/shop" },
 ];
 
@@ -14,7 +13,7 @@ export default function Header() {
     <Disclosure as="nav">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-screen px-2 sm:px-6 lg:px-8 border-b-2 border-black border-solid">
+          <div className="mx-auto min-w-screen px-2 py-4 sm:px-6 lg:px-8 bg-white">
             <div className="relative flex items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -49,8 +48,8 @@ export default function Header() {
                           return (
                             "px-3 py-2 rounded-md text-base font-medium no-underline" +
                             (!isActive
-                              ? "text-gray-300 hover:bg-gray-700 hover:text-white"
-                              : " bg-white text-black ")
+                              ? "text-gray-300 hover:bg-[#F8B6B5] hover:text-white duration-200"
+                              : " bg-[#20c4a6] text-white ")
                           );
                         }}
                         to={item.href}
@@ -65,7 +64,7 @@ export default function Header() {
           </div>
 
           <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pt-2 pb-5">
+            <div className="mt-4 space-y-1 px-2 pt-2 pb-5">
               {navigation.map((item) => (
                 <NavLink
                   end
@@ -73,7 +72,7 @@ export default function Header() {
                     return (
                       "px-3 py-2 rounded-md text-base font-medium m-1 no-underline" +
                       (!isActive
-                        ? "text-gray-300 hover:bg-gray-700 hover:text-white"
+                        ? "text-gray-300 hover:bg-[#F8B6B5] hover:text-white"
                         : " bg-white text-black ")
                     );
                   }}
